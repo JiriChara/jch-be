@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :articles, param: :slug, only: [
+    :index,
+    :show
+  ]
+  resources :projects, param: :slug
+
+  resources :tags, param: :slug, only: [
+    :index
+  ]
 end
