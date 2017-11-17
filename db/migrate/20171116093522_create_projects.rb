@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration[5.1]
       t.text :description
       t.string :slug
       t.string :url
-      t.string :image_url
+      t.string :image
 
       t.timestamps
     end

@@ -9,3 +9,7 @@ require 'support/factories'
     user: User.all.sample
   )
 end
+
+10.times do
+  FactoryBot.create(:project)
+end

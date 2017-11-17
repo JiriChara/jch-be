@@ -5,6 +5,8 @@ class Article < ApplicationRecord
   include Taggable
   include PgSearch
 
+  default_scope { order(created_at: :desc) }
+
   scope :by_tag, -> (name) do
     tag = Tag.find_by(name: name)
     tag ? tag.articles : Article.none
