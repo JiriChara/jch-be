@@ -17,22 +17,27 @@ module HasSortableColumns
 
 protected
   def sort(target, hash = params)
-    hash[:sort] ||= {}
-    column = hash[:sort][:column] || :id
-    direction = (hash[:sort][:direction] || :asc).downcase.to_sym
+    if hash[:sort]
+      sort = JSON.parse(hash[:sort]).symbolize_keys
 
-    if direction !~ /^asc|desc$/
-      raise DirectionError, "The direction must be DESC or ASC. Not #{direction}."
-    end
+      column = sort[:column] || :id
+      direction = (sort[:direction] || :asc).downcase.to_sym
 
-    case target
-    when ActiveRecord::Relation
-      target.order(
-        column => direction
-      )
-    when Array
-      target.sort_by do |item|
-        direction === :asc ? column : -column
+      if direction !~ /^asc|desc$/
+        raise DirectionError, "The direction must be DESC or ASC. Not #{direction}."
+      end
+
+      case target
+      when ActiveRecord::Relation
+        target.order(
+          column => direction
+        )
+      when Array
+        target.sort_by do |item|
+          direction === :asc ? column : -column
+        end
+      else
+        target
       end
     else
       target
