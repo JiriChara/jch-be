@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   has_sortable_columns :id, :title, :slug, :content, :published_at, :type,
     :created_at, :updated_at
 
-  has_scope :by_tag
+  has_scope :by_tag, :by_type
 
   def index
     articles = paginate(sort(search(apply_scopes(Article).all)))

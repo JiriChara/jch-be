@@ -15,6 +15,7 @@ FactoryBot.define do
         Faker::Lorem.word
       end.join(',')
     end
+    type 'Article'
   end
 
   factory :tag do

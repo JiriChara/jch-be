@@ -10,6 +10,10 @@ class Article < ApplicationRecord
     tag ? tag.articles : Article.none
   end
 
+  scope :by_type, -> (type) do
+    Article.where(type: type)
+  end
+
   pg_search_scope :search_for,
     against: %i(title content)
 
