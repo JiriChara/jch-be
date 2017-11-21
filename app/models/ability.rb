@@ -2,28 +2,22 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Guests
+    if user.present? && user.admin?
+      can :manage, :all
+    else
+      can :read, Article, Article.all do |article|
+        article.published? && article.published_at < Time.now.utc
+      end
 
-    can :read, Article, Article.all do |article|
-      article.published? && article.published_at < Time.now.utc
+      can :read, Tag
+
+      can :read, Project
+
+      can :create, User
+
+      if user.present?
+        can :read, User, id: user.id
+      end
     end
-
-    can :read, Tag
-
-    can :read, Project
-
-    can :create, User
-
-    return unless user.present?
-
-    # Logged-in users
-
-    can :read, User, id: user.id
-
-    return unless user.admin?
-
-    # Admins
-
-    can :manage, :all
   end
 end
