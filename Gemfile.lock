@@ -48,7 +48,7 @@ GEM
     bcrypt (3.1.11)
     builder (3.2.3)
     byebug (9.1.0)
-    cancancan (1.17.0)
+    cancancan (2.1.1)
     carrierwave (1.2.1)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -168,7 +168,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10)
   api-pagination (~> 4.4)
   byebug
-  cancancan (~> 1.16)
+  cancancan (~> 2.0)
   carrierwave (~> 1.0)
   carrierwave-base64 (~> 2.5)
   factory_bot_rails

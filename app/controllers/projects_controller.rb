@@ -1,39 +1,34 @@
 class ProjectsController < ApplicationController
   include HasSortableColumns
 
+  load_resource find_by: :slug
+  authorize_resource
+
   has_sortable_columns :id, :name, :slug, :description, :url,
     :created_at, :updated_at
 
   def index
-    projects = paginate(sort(search(apply_scopes(Project).all)))
+    @projects = paginate(sort(search(apply_scopes(@projects))))
 
-    render json: projects
+    render json: @projects
   end
 
   def show
-    project = Project.find_by!(slug: params[:slug])
-
-    render json: project
+    render json: @project
   end
 
   def create
-    project = Project.create!(project_params)
-
-    render json: project, status: 201
+    render json: @project, status: 201
   end
 
   def update
-    project = Project.find_by!(slug: params[:slug])
+    @project.update(project_params)
 
-    project.update(project_params)
-
-    render json: project
+    render json: @project
   end
 
   def destroy
-    project = Project.find_by!(slug: params[:slug])
-
-    project.destroy!
+    @project.destroy!
 
     head 204
   end

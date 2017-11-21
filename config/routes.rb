@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
-  resources :articles, param: :slug, only: [
-    :index,
-    :show
-  ]
-  resources :projects, param: :slug
+  resources :articles
 
-  resources :tags, param: :slug, only: [
+  resources :projects
+
+  resources :tags, only: [
     :index
+  ]
+
+  resources :users, only: [
+    :index,
+    :show,
+    :create
+  ]
+
+  resources :tokens, only: [
+    :create
   ]
 end

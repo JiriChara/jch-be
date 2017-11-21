@@ -14,6 +14,10 @@ class Article < ApplicationRecord
     Article.where(type: type)
   end
 
+  scope :published, -> (value = true) do
+    value ? where.not(published_at: nil) : where(published_at: nil)
+  end
+
   pg_search_scope :search_for,
     against: %i(title content)
 

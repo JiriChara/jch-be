@@ -31,7 +31,7 @@ gem 'carrierwave-base64', '~> 2.5'
 gem 'active_model_serializers', '~> 0.10'
 gem 'pg_search', '~> 2.0'
 gem 'knock', '~> 2.1'
-gem 'cancancan', '~> 1.16'
+gem 'cancancan', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
