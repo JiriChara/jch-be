@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user
     @article.save!
 
-    render json: article, status: 201
+    render json: @article, status: 201
   end
 
   def update

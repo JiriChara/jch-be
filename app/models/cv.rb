@@ -1,0 +1,2 @@
+class CV < Article
+end
