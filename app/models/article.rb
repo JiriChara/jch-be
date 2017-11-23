@@ -1,6 +1,8 @@
 class Article < ApplicationRecord
   belongs_to :user
 
+  has_many :images, as: :imageable
+
   include Sluggable
   include Taggable
   include PgSearch

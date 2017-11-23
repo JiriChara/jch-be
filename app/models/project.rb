@@ -5,5 +5,5 @@ class Project < ApplicationRecord
   validates :url, presence: true
   validates :description, presence: true
 
-  mount_base64_uploader :image, ProjectImageUploader
+  mount_base64_uploader :image, ImageUploader
 end

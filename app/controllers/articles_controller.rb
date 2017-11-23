@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article.update(article_params)
+    @article.update!(article_params)
 
     render json: @article
   end
@@ -42,6 +42,6 @@ class ArticlesController < ApplicationController
 
 private
   def article_params
-    params.require(:article).permit(:title, :slug, :content, :published_at, :type)
+    params.require(:article).permit(:title, :slug, :content, :published_at, :type, :images)
   end
 end

@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     :index
   ]
 
+  resources :images, only: [
+    :index,
+    :create,
+    :destroy
+  ]
+
   resources :users, only: [
     :index,
     :show,

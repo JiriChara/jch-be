@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user.save!
+
     render json: @user, status: 201
   end
 
