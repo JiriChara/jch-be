@@ -17,6 +17,10 @@ class Ability
 
       can :create, User
 
+      can :read, User, User.all do |u|
+        u.id == user.id
+      end
+
       if user.present?
         can :read, User, id: user.id
       end
