@@ -39,6 +39,11 @@ class User < ApplicationRecord
     }
   end
 
+  def self.from_token_request(request)
+    email = request.params['auth'] && request.params['auth']['email']
+    self.find_by email: email.downcase.strip
+  end
+
   def admin?
     role == 'admin'
   end
