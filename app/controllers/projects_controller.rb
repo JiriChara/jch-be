@@ -18,6 +18,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    @project.save!
+
     render json: @project, status: 201
   end
 
