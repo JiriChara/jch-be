@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :projects
 
   resources :tags, only: [
-    :index
+    :index,
+    :create
   ]
 
   resources :images, only: [
