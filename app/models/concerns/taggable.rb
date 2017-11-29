@@ -7,17 +7,16 @@ module Taggable
   end
 
   def tag(name)
-    name.strip!
-    tag = Tag.find_or_create_by(name: name)
+    tag = Tag.find_or_create_by(name: name.strip)
     self.taggings.find_or_create_by(tag_id: tag.id)
     tag
   end
 
-  def tag_names
-    tags.collect(&:name)
+  def tag_list
+    tags.map(&:name).join(', ')
   end
 
-  def tag_names=(names)
+  def tag_list=(names)
     self.tags = names.split(',').map do |t|
       self.tag(t)
     end

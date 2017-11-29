@@ -23,8 +23,6 @@ class Article < ApplicationRecord
   pg_search_scope :search_for,
     against: %i(title content)
 
-  paginates_per 5
-
   def publish!
     update(published_at: Time.now.utc)
   end

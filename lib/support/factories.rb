@@ -11,7 +11,7 @@ FactoryBot.define do
     content { Faker::Lorem.paragraph(50) }
     published_at { Time.now }
     after(:create) do |article|
-      article.tag_names = (1..(1..5).to_a.sample).map do
+      article.tag_list = (1..(1..5).to_a.sample).map do
         Faker::Lorem.word
       end.join(',')
     end
