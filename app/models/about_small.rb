@@ -1,0 +1,2 @@
+class AboutSmall < Article
+end
