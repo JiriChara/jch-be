@@ -18,6 +18,12 @@ class TagsController < ApplicationController
     render json: @tag, status: 201
   end
 
+  def update
+    @tag.update!(tag_params)
+
+    render json: @tag
+  end
+
 private
   def tag_params
     params.require(:tag).permit(:name, :slug)
