@@ -3,6 +3,7 @@ module Sluggable
 
   included do
     before_create :set_slug
+    validates :slug, uniqueness: true
   end
 
 private
@@ -11,6 +12,17 @@ private
 
     sluggable = sluggables.find(&self.method(:respond_to?))
 
-    self.slug = sluggable ? send(sluggable).parameterize : SecureRandom.hex
+    self.slug = if sluggable
+      slug_exists = false
+      loop do
+        slug = send(sluggable).parameterize + (
+          slug_exists ? "-#{SecureRandom.hex(6)}" : ''
+        )
+        slug_exists = self.class.find_by(slug: slug).present?
+        break slug unless slug_exists
+      end
+    else
+      SecureRandom.hex
+    end
   end
 end
