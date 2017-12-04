@@ -4,8 +4,7 @@ class ArticlesController < ApplicationController
   load_resource find_by: :slug
   authorize_resource
 
-  has_sortable_columns :id, :title, :slug, :content, :published_at, :type,
-    :created_at, :updated_at
+  has_sortable_columns :id, :title, :slug, :content, :published_at, :type, :created_at, :updated_at
 
   has_scope :by_tag
   has_scope :by_type

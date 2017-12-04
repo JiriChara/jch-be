@@ -9,4 +9,7 @@ class Project < ApplicationRecord
     image.name.sub(/\.\w+$/, '')
   end
 
+  scope :published, -> (value = true) do
+    value ? where.not(published_at: nil) : where(published_at: nil)
+  end
 end

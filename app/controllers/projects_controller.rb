@@ -4,8 +4,10 @@ class ProjectsController < ApplicationController
   load_resource find_by: :slug
   authorize_resource
 
-  has_sortable_columns :id, :name, :slug, :description, :url,
-    :created_at, :updated_at
+  has_sortable_columns :id, :name, :slug, :description, :url, :published_at, :created_at,
+    :updated_at
+
+  has_scope :published, type: :boolean, allow_blank: true
 
   def index
     @projects = paginate(sort(search(apply_scopes(@projects))))
@@ -37,6 +39,6 @@ class ProjectsController < ApplicationController
 
 private
   def project_params
-    params.require(:project).permit(:name, :slug, :description, :url, :image)
+    params.require(:project).permit(:name, :slug, :description, :url, :image, :published_at)
   end
 end

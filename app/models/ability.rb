@@ -9,11 +9,14 @@ class Ability
         article.published? && article.published_at < Time.now.utc
       end
 
+      can :read, Project, Project.all do |project|
+        project.published? && project.published_at < Time.now.utc
+      end
+
       can :read, Image
 
       can :read, Tag
 
-      can :read, Project
 
       can :create, User
 
