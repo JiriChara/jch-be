@@ -26,5 +26,6 @@ FactoryBot.define do
     name { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph(20) }
     url { Faker::Internet.url }
+    published_at { Time.now }
   end
 end
