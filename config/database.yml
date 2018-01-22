@@ -83,3 +83,7 @@ production:
   database: jch-be_production
   username: jch-be
   password: <%= ENV['JCH-BE_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: jch-be_staging
